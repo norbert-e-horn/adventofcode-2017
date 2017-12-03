@@ -1,19 +1,14 @@
 r=277678
-z=2
-def a(x,y):
-	global z
-	if z==r:print (x+y)
-	z+=1
-for i in range(1,400):
-	a(-1+i,i)
-	p = (i+1)*2-1
-	for x in range(1,p/2+i):a(-1+i-x,i)
-	x = p/2+i-1
-	for y in range(1, p):a(-1+i-x,i-y)
-	y = p-1
-	for x2 in range(1,p):a(-1+i-x+x2,i-y)
-	x2 = p-1
-	for y2 in range(1,p):a(-1+i-x+x2,i-y+y2)
+def m(t):
+	p=t[3]*2+1
+	if t[5]==0:return[t[0]+1,t[1],t[2]+1,t[3],p/2+t[3]-1 if t[4]==1 else t[4]-1,1if t[4]==1 else 0]
+	elif t[5]==1:return [t[0],t[1]-1,t[2]+1,t[3],p-1 if t[4]==1 else t[4]-1,2 if t[4]==1 else 1]
+	elif t[5]==2:return [t[0]-1,t[1],t[2]+1,t[3],p-1if t[4]==1 else t[4]-1,3 if t[4]==1 else 2]
+	else:return [t[0],t[1]+1,t[2]+1,t[3]+1if t[4]==1 else t[3],p if t[4]==1 else t[4]-1,0 if t[4]==1 else 3]
+t = [0,0,1,1,1,0]
+while t[2] != 277678:
+	t = m(t)
+print(t[0]+t[1])
 import sys
 def a2(x,y):
 	global m
