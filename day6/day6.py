@@ -1,5 +1,5 @@
-import sys,itertools
-l=[int(c) for c in sys.argv[1].split("\t")]
+import sys
+l=[int(c)for c in sys.argv[1].split("\t")]
 k={}
 s=0
 n=len(l)
