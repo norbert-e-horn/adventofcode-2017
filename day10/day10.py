@@ -7,10 +7,11 @@ p=0
 s=0
 def d():
 	global l,p,s
-	for i in range(len(k)):
-		r=list(reversed(l[p:]+l[:(p+k[i])%n]if p+k[i]>n else l[p:p+k[i]]))
-		l=r[-((p +k[i])%n):]+l[(p+k[i])%n:p]+r[:n-p] if p+k[i]>n else l[:p]+r+l[p+k[i]:]
-		p=(p+s+k[i])%n
+	for i in k:
+		l=l[p:]+l[:p]
+		l=list(reversed(l[:i]))+l[i:]
+		l=l[-p:]+l[:-p]
+		p=(p+s+i)%n
 		s+=1
 d()
 print(l[0]*l[1])
