@@ -1,18 +1,20 @@
 r=277678
 def m(t):
-	c=lambda x,y: x if t[4]==1else y
 	p=t[3]*2+1
-	if t[5]==0:return[t[0]+1,t[1],t[2]+1,t[3],c(p/2+t[3]-1,t[4]-1),c(1,0)]
-	elif t[5]==1:return[t[0],t[1]-1,t[2]+1,t[3],c(p-1,t[4]-1),c(2,1)]
-	elif t[5]==2:return[t[0]-1,t[1],t[2]+1,t[3],c(p-1,t[4]-1),c(3,2)]
-	else:return[t[0],t[1]+1,t[2]+1,c(t[3]+1,t[3]),c(p,t[4]-1),c(0,3)]
-t = [0,0,1,1,1,0]
-while t[2] != 277678:
-	t = m(t)
+	a=t[5]%2
+	b=t[5]/2
+	c=1if t[4]==1else 0
+	t[0]+=(1-2*(a))*(1-b)
+	t[1]+=(1-2*(a))*(b)
+	t[2]+=1
+	t[3]+=c*(b)*(1-a)
+	t[4]+=c*((p-1)*(a)+(1-a)*((1-b)*(p/2+t[3]-1)+(b)*p))-1
+	t[5]+=c*((-2)*(b)+(1-b)*(3-2*(a)))
+t=[0,0,1,1,1,0]
+while t[2]!=r:m(t)
 print(t[0]+t[1])
 import sys
 def a2(x,y):
-	global m
 	z=sum([sum([m[x-i][y-j]for i in range(-1,2)])for j in range(-1,2)])-m[x][y]
 	if z>=r:
 		print(z)
