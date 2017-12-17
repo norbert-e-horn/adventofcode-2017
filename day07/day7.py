@@ -12,7 +12,7 @@ k={}
 while 1:
 	for l,v in d.items():
 		p=v[1]
-		if len([1for i in p if not i in k])<1:
+		if all([i in k for i in p]):
 			k[l]=v[0]
 			r=sorted([list(g)for _,g in itertools.groupby([(q,k[q])for q in p],lambda x:x[1])],key=lambda x:len(x[0]))
 			for b in p:k[l]+=k[b]
