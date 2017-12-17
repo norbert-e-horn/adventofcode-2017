@@ -1,29 +1,38 @@
-def d(w,o="{:02x}"):
+r=range
+def d(w):
 	n=256
-	l=range(n)
+	l=list(r(n))
 	p=0
 	s=0
-	for _ in range(64):
-		for i in map(ord,w)+[17,31,73,47,23]:
+	for _ in r(64):
+		for i in map(ord,w+'\x11\x1fI/\x17'):
 			l=l[p:]+l[:p]
 			l=list(reversed(l[:i]))+l[i:]
 			l=l[-p:]+l[:-p]
 			p=(p+s+i)%n
 			s+=1
-	return [o.format(reduce(lambda x,y:x^y,l[i:i+16]))for i in range(0,n,16)]
-w="hxtvlmkl"
-r=range(128)
-q=[map(int,"".join(d(w+"-"+str(j),"{:08b}")))for j in r]
-print(sum(map(sum,q)))
+	z=[]
+	k=0
+	for i in r(n):
+		k^=l[i]
+		if i%16==15:
+			z+=[f"{k:08b}"]
+			k=0
+	return z
+n=128
+z=""
+for j in r(n):z+="".join(d("hxtvlmkl-"+str(j)))
+q=list(map(int,z))
+print(sum(q))
 s=0
-for i in r:
-	for j in r:
-		if q[i][j]:
-			s+=1
-			v=[(i,j)]
-			while v!=[]:
-				x,y=v.pop()
-				if not (x in r and y in r and q[x][y]):continue
-				q[x][y]=0
-				for l in[-1,1]:v+=[(x+l,y),(x,y+l)]
+for i in r(n*n):
+	if q[i]:s+=1
+	v=[i]
+	while v:
+		x=v.pop()
+		if n*n>x>=0and q[x]:
+			q[x]=0
+			v+=[x+l for l in[-n,n]]
+			if x%n:v+=[x-1]
+			if (x+1)%n:v+=[x+1]
 print(s)
