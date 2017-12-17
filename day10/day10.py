@@ -1,8 +1,9 @@
 import sys
+from functools import reduce
 n=256
 q=sys.argv[1]
 k=[int(x) for x in q.split(",")]
-l=range(n)
+l=list(range(n))
 p=0
 s=0
 def d():
@@ -16,7 +17,7 @@ def d():
 d()
 print(l[0]*l[1])
 k=[ord(x)for x in q]+[17,31,73,47,23]
-l=range(n)
+l=list(range(n))
 p=0
 s=0
 while s/len(k)<64:d()
