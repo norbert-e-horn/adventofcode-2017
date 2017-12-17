@@ -22,8 +22,8 @@ def a2(x,y):
 	m[x][y]=z
 q=11
 s=[q/2-1,q/2]
-m=[[0 for i in range(0,q)] for y in range(0,q)]
-m[s[0]+1][s[1]] = 1
+m=[[0for i in range(q)]for y in range(q)]
+m[s[0]+1][s[1]]=1
 for i in range(1,q/2):
 	s[0]+=1
 	a2(s[0],s[1]+i)
