@@ -1,12 +1,13 @@
 import sys
-d={'i':0,'a':0,'p':0,'b':0,'f':0,'1':1}
+d={'1':1}
+for c in"iapbf":d[c]=0
 k=[x.split()for x in sys.argv[1].split("\n")]
 r=[d,dict(d)]
 r[1]["p"]=1
 def n(x,y,z=0):
 	m=r[p]
-	try:v=m[z]
-	except:v=int(z)
+	if z in m:z=m[z]
+	v=int(z)
 	def u():m[y]*=v
 	def d():m[y]+=v
 	def o():m[y]%=v
