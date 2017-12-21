@@ -13,10 +13,10 @@ def t(v,k):
 		for j in u if i%2else f:
 			for h in u if i&2else f:q+=k[h][j]if i&4else k[j][h]
 		if q in p:return p[q]
-def b():print(sum([l.count("#")for l in s]))
+def b():print(sum(l.count("#")for l in s))
 for x in r(18):
 	n=len(s)
-	v=3 if n%2else 2
+	v=3if n%2else 2
 	z=n//v
 	q=[""]*(n+z)
 	for i in r(z):
